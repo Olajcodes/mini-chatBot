@@ -1,0 +1,130 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: system-ui, Arial, sans-serif;
+  margin: 0;
+  background: #f6f7fb;
+  color: #222;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+}
+
+h1 { margin: 0 0 16px; font-size: 24px; }
+
+.auth { display: grid; gap: 12px; margin-bottom: 16px; }
+
+.toggle { display: flex; align-items: center; gap: 8px; }
+
+.auth-row { display: grid; gap: 6px; }
+
+.hidden { display: none; }
+
+label { font-weight: 600; font-size: 14px; }
+
+input[type="text"], input[type="password"] {
+  padding: 10px 12px;
+  border: 1px solid #d0d4dc;
+  border-radius: 8px;
+  outline: none;
+}
+
+.chat { display: grid; gap: 12px; }
+
+.messages {
+  border: 1px solid #e1e4ea;
+  border-radius: 12px;
+  padding: 12px;
+  height: 380px;
+  overflow: auto;
+  background: #fafbff;
+}
+
+/* --- Clean & Correct Message Alignment --- */
+
+.msg {
+  display: flex;
+  flex-direction: column;
+  margin: 8px 0;
+}
+
+.msg.user {
+  align-items: flex-end;
+}
+
+.msg.bot {
+  align-items: flex-start;
+}
+
+/* --- Bubble Styling --- */
+
+.bubble {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
+.msg.user .bubble {
+  background: #0084ff;
+  color: white;
+  border-bottom-right-radius: 0;
+}
+
+.msg.bot .bubble {
+  background: #e6e6e6;
+  color: black;
+  border-bottom-left-radius: 0;
+}
+
+.meta {
+  font-size: 12px;
+  color: #555;
+  margin-top: 6px;
+}
+
+/* --- Input Row --- */
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #9bb5f7;
+  cursor: not-allowed;
+}
+
+/* --- Thinking Animation --- */
+.thinking .dot {
+  height: 8px;
+  width: 8px;
+  background: #999;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+  animation: blink 1.4s infinite both;
+}
+
+.thinking .dot:nth-child(2) { animation-delay: 0.2s; }
+.thinking .dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0% { opacity: .2; }
+  20% { opacity: 1; }
+  100% { opacity: .2; }
+}

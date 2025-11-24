@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Health Chatbot</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Mini Health Chatbot</h1>
+    <div class="auth">
+      <label class="toggle">
+        <input type="checkbox" id="modeToggle" />
+        <span>Use password mode</span>
+      </label>
+      <div id="keyMode" class="auth-row">
+        <label>OpenAI API Key</label>
+        <input type="password" id="apiKey" placeholder="sk-..." />
+      </div>
+      <div id="passwordMode" class="auth-row hidden">
+        <label>Admin Password</label>
+        <input type="password" id="adminPassword" placeholder="Enter password" />
+      </div>
+    </div>
+    <div class="chat">
+      <div id="messages" class="messages"></div>
+      <div class="input-row">
+        <input id="messageInput" type="text" placeholder="Type a health question" />
+        <button id="sendBtn">Send</button>
+      </div>
+    </div>
+  </div>
+  <script src="/script.js"></script>
+</body>
+</html>
