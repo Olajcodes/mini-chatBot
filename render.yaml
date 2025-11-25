@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: mini-chatbot-api
+    env: python
+    plan: free
+    region: oregon
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn -w 4 -k uvicorn.workers.UvicornWorker api:app --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ALLOWED_ORIGINS
+        value: "https://chatbot-plum-seven.vercel.app"
+        sync: false

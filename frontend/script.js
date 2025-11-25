@@ -93,7 +93,11 @@ async function send() {
   showThinking();
 
   try {
-    const res = await fetch('/chat', {
+    // Allow production deployments to set a global `API_URL` (e.g. window.API_URL)
+    // If not set, fall back to same-origin '/chat' for local testing.
+    const API_BASE = (typeof window !== 'undefined' && window.API_URL) ? window.API_URL : '';
+
+    const res = await fetch(`${API_BASE}/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
