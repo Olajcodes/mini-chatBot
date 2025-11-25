@@ -84,13 +84,20 @@ def ask_bot(user_message: str, api_key: Optional[str] = None) -> str:
     
     # Nice loading state (terminal mode)
     with yaspin(text="Bot thinking...", color="cyan"):
-        response = client.responses.create(
-            model=MODEL_NAME,
-            input=input_messages,
-            temperature=TEMPERATURE,
-            top_p=TOP_P,
-            max_output_tokens=MAX_OUTPUT_TOKENS,
-        )
+        try:
+            response = client.responses.create(
+                model=MODEL_NAME,
+                input=input_messages,
+                temperature=TEMPERATURE,
+                top_p=TOP_P,
+                max_output_tokens=MAX_OUTPUT_TOKENS,
+            )
+        except Exception as e:
+            # Surface useful debugging info in logs and raise so the API can return the error
+            # The exception message from the SDK usually contains status and details (e.g., model not found)
+            err_msg = f"OpenAI API call failed: {e}"
+            print(err_msg)
+            raise RuntimeError(err_msg)
         
     answer = response.output_text.strip()
         

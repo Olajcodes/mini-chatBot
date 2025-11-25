@@ -12,5 +12,5 @@ services:
       - key: OPENAI_API_KEY
         sync: false
       - key: ALLOWED_ORIGINS
-        value: "https://chatbot-plum-seven.vercel.app"
+        value: "https://mini-chat-bot-umber.vercel.app"
         sync: false

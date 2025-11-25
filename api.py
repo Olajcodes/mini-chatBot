@@ -29,7 +29,7 @@ if allowed:
     allow_origins = [o.strip() for o in allowed.split(",") if o.strip()]
 else:
     allow_origins = [
-        "https://chatbot-plum-seven.vercel.app",
+        "https://mini-chat-bot-umber.vercel.app",
         "http://localhost:3000",
         "http://127.0.0.1:8000",
     ]

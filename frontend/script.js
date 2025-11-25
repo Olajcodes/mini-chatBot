@@ -103,12 +103,33 @@ async function send() {
       body: JSON.stringify(body)
     });
 
-    const data = await res.json();
+    // If response is not OK, try to read body for debugging
+    if (!res.ok) {
+      let text;
+      try { text = await res.text(); } catch (err) { text = '<no body>'; }
+      console.error('Request failed', res.status, res.statusText, text);
+      removeThinking();
+      alert(`Request failed: ${res.status} ${res.statusText} - ${text}`);
+      return;
+    }
+
+    // Try to parse JSON, fall back to text for clearer errors
+    let data;
+    try {
+      data = await res.json();
+    } catch (err) {
+      const txt = await res.text();
+      console.error('Failed to parse JSON response', err, txt);
+      removeThinking();
+      alert(`Invalid JSON response from server:\n${txt}`);
+      return;
+    }
 
     // Remove thinking animation
     removeThinking();
 
     if (data.error) {
+      console.error('API returned error', data.error);
       alert(data.error);
     } else {
       addMessage('user', text, data.request_ts || new Date().toISOString());
